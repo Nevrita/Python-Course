@@ -1,11 +1,8 @@
-#Printing a greeting message
-print("Hello World!")
+# Creating different variables
+x = 5
+y = "Meher"
+print(x)
+print(y)
 
-#Printing my name
-print("I'm Meher")
-
-#Printing a fun fact about myself
-print("My ambition changes with time")
-
-#Printing a simple calclution
-print("The result of 3 + 5 is:", 3 + 5)
+codingal = "codingal"
+print(codingal)

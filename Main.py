@@ -1,4 +1,4 @@
-#Print a Sentence 
+#Print a Sentence
 print("Welcome to the world of programming!")
 
 #Print a Number
@@ -11,4 +11,4 @@ print("Hello Python \n")
 print("hello",5)
 
 #End argument of Print Statement
-print("welcome to ", end= "*")
+print("welcome to", end= "*")

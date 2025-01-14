@@ -1,13 +1,5 @@
-# Creating different variables
-x = 5
-y = "Meher"
-print(x)
-print(y)
+import keyword
 
-codingal = "Codingal is a platfrom where kids love coding."
-print(codingal)
-
-# User Input
-name = input("enter your name: ")
-
-print("\n Hello", name, "\n welcome to Codingal")
+# print all the Python keywords
+print("Python keywords are...\n")
+print(keyword.kwlist)

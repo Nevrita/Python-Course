@@ -1,11 +1,15 @@
-# Taking total amount as input from user
-Amount = int(input("Please Enter Amount for Withdraw :"))
+# Take Marks As Input From User
+print("Enter Marks Obtaines in 4 Subjects: ")
+Math = int(input("Maths: "))
+English = int(input("English: "))
+Science = int(input("Science: "))
+Arts_and_Crafts = int(input("Arts and Crafts: "))
 
-# Calculating the number of notes of different denominations
-note_1 = Amount//100
-note_2 = (Amount%100)//50
-note_3 = ((Amount%100)%50)//10
+# Let's calculate the percentage of marks
+sum = Math+English+Science+Arts_and_Crafts
+print("Sum of Math, English, Science and Art")
 
-print("Notes of 100 dollar", note_1)
-print("Notes of 50 dollar", note_2)
-print("Notes of 10 dollar", note_3)
+perc = (sum/400)*100
+
+print(end = "Percentage Mark = ")
+print(perc)

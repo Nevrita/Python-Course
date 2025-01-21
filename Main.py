@@ -1,8 +1,14 @@
-# Getting the input (simulating Ram's input)  
-input_word = input("Enter the word in lowercase (e.g., 'congratulations'): ")  
+# Storing Values
+exam1 = 98
+exam2 = 94
+exam3 = 92
+exam4 = 96
+exam5 = 97
 
-# Convert the input word to uppercase  
-uppercase_word = input_word.upper()  
+# Finding the total of numbers
+sum = exam1+exam2+exam3+exam4+exam5
+print("The sum of all the numbers that I got in my last exams is: ", sum)
 
-# Display the result  
-print("The word in upper case is:", uppercase_word)
+# Finding the average of numbers
+average = sum/5
+print("The average of all the numbers is: ", average)

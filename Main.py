@@ -1,14 +1,11 @@
-# Storing Values
-exam1 = 98
-exam2 = 94
-exam3 = 92
-exam4 = 96
-exam5 = 97
+# Taking total amount as input from user
+Amount = int(input("Please Enter Amount for Withdraw :"))
 
-# Finding the total of numbers
-sum = exam1+exam2+exam3+exam4+exam5
-print("The sum of all the numbers that I got in my last exams is: ", sum)
+# Calculating the number of notes of different denominations
+note_1 = Amount//100
+note_2 = (Amount%100)//50
+note_3 = ((Amount%100)%50)//10
 
-# Finding the average of numbers
-average = sum/5
-print("The average of all the numbers is: ", average)
+print("Notes of 100 dollar", note_1)
+print("Notes of 50 dollar", note_2)
+print("Notes of 10 dollar", note_3)

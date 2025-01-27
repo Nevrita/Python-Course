@@ -1,13 +1,14 @@
-# quiz.py
+def check_clothing(temperature):  
+    if temperature > 20:  
+        return "It's warm enough for light clothes!"  
+    elif 15 < temperature <= 20:  
+        return "You might want a light jacket, but light clothes should be fine."  
+    elif 10 < temperature <= 15:  
+        return "It's getting a bit chilly; a sweater might be a good idea."  
+    else:  
+        return "It's too cold for light clothes. Better wear a jacket!"  
 
-answer = input("When was the first known use of the word 'quiz'? ")
-if answer == "1781":
-    print("Correct!")
-else:
-    print(f"The answer is '1781', not {answer!r}")
-
-answer = input("Which built-in function can get information from the user? ")
-if answer == "input":
-    print("Correct!")
-else:
-    print(f"The answer is 'input', not {answer!r}")
+# Example usage  
+current_temperature = float(input("Enter the current temperature in °C: "))  
+suggestion = check_clothing(current_temperature)  
+print(suggestion)

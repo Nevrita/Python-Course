@@ -1,9 +1,5 @@
-costprice =int(input("enter the cp: "))
-sellingprice =int(input("enter the sp: "))
-
-if(sellingprice>costprice):
-    print("profit")
-    pt=sellingprice-costprice
-    print(pt)
-else :
-    print("No profit")
+n=int(input("Enter the number:"))
+if( n%2==0 ):
+ print("The number is even")
+else:
+ print("The number is odd")

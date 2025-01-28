@@ -1,7 +1,23 @@
-a = 23
-b = 24
-c = 22
-if a > b or a < c:
-    print("I'm using or operator")
-elif a < b and a > c:
-    print("I'm using and operator")
+a = 10
+b = 12
+c = 12
+
+print(a != b)
+print(b != c)
+
+a = "python"
+b = "coding"
+
+if a != b :
+    print(a, 'and', b, 'are different.')
+
+a = 4
+b = 5
+
+if (a == 1) != (b == 5):
+    print('Hello')
+
+a = int(input("enter a number"))
+
+if a%2 != 0 :
+    print(a, "is not even number.")

@@ -1,18 +1,8 @@
-height = float(input("Enter your height in cm: "))
-weight = float(input("Enter your weight in kg: "))
+# Get the character from the user  
+character = input("Enter a character: ")  
 
-BMI = weight / (height/100)**2
-print("Your BMI is", BMI)
-
-if BMI <= 18.4:
-    print("You are underweight.")
-elif BMI <= 24.9:
-    print("You are healthy.")
-elif BMI <= 29.9:
-    print("You are over weight")
-elif BMI <= 34.9:
-    print("You are severely over weight.")
-elif BMI <= 39.9:
-    print("You are ovese.")
-else:
-    print("You are severely obese.")
+# Check if the character is an alphabet  
+if character.isalpha() and len(character) == 1:  
+    print(f"'{character}' is an alphabet.")  
+else:  
+    print(f"'{character}' is not an alphabet.")

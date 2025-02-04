@@ -1,11 +1,11 @@
-#Input a word or sentence
-string = input("Please enter your own String :")
+#Take input of a string
+str1 = input("Please Enter a sentence: ")
+total = 1 #intialise
 
-string2 = ('')
+for i in range(len(str1)):
+#loop will run to calculate the length using string operation
+    if(str1[i] == ' ' ):
+    #condition 1
+        total = total + 1
 
-#loop for printing in reverse
-for i in string:
-    string2 = i + string2
-
-print("\nThe Original String =", string)
-print("The Reversed String =", string2)
+print("Total Number of Words in this String = ", total)

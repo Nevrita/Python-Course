@@ -1,11 +1,11 @@
-#Take input of a string
-str1 = input("Please Enter a sentence: ")
-total = 1 #intialise
+print("Welcome to the Power Calculator!")  
 
-for i in range(len(str1)):
-#loop will run to calculate the length using string operation
-    if(str1[i] == ' ' ):
-    #condition 1
-        total = total + 1
+# Taking user input  
+base = float(input("Enter the base number: "))  
+exponent = int(input("Enter the exponent: "))  
 
-print("Total Number of Words in this String = ", total)
+# Calculating the power  
+result = int(base ** exponent)  
+
+# Displaying the result  
+print(f"{base} raised to the power of {exponent} is: {result}")

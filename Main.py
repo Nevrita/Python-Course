@@ -1,6 +1,11 @@
-age=int(input("Enter your age:"))
-if age>=10:
-    if age<=20:
-        print ("Your age is : ", age," \n You are allowed to enter the class")
-    else:
-        print ("You age is:",age , " \n You are not eligible")
+#Input a word or sentence
+string = input("Please enter your own String :")
+
+string2 = ('')
+
+#loop for printing in reverse
+for i in string:
+    string2 = i + string2
+
+print("\nThe Original String =", string)
+print("The Reversed String =", string2)

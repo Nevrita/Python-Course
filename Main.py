@@ -1,11 +1,10 @@
-print("Welcome to the Power Calculator!")  
+#Input the value of terms
+n = int(input("Enter the value of terms: "))
 
-# Taking user input  
-base = float(input("Enter the base number: "))  
-exponent = int(input("Enter the exponent: "))  
+sum = 0 #initialise
+i = 1 #intialise
+while i<=n: #loop will run from 1 to n
+    sum = sum+i
+    i = i+i
 
-# Calculating the power  
-result = int(base ** exponent)  
-
-# Displaying the result  
-print(f"{base} raised to the power of {exponent} is: {result}")
+print("\nSum =", sum)

@@ -1,18 +1,14 @@
-# TAKE INPUT FROM THE USER
-num = int(input("Enter a number: "))
+#Take input of a word
+string = input("Please enter your own word: ")
+#Take input of a character
+char = input("Please enter your own Character: ")
+i = 0
+count = 0
+#Loop will to find the occurence of character
+while(i < len(string)): #string operation
 
-# initialize sum
-sum = 0
-
-# find the sum of the cube of each digit
-temp = num
-while temp > 0:
-    digit = temp % 10
-    sum += digit ** 3
-    temp //= 10
-
-# display the result
-if num == sum:
-    print(num, "is an Armstrong number")
-else:
-    print(num,"is not an Armstrong number")
+    if(string[i] == char): #condition 1
+        count = count + 1
+    i = i + 1
+#Display the result
+print("The Total Number of Times", char, "has Occurred = " , count)

@@ -1,14 +1,26 @@
-#Take two input from user
-lower = int(input("Enter a lower range: "))
-upper = int(input("Enter a upper range: "))
+#Input a number 
+num = int(input("Enter the number : "))
+t = num
+numLen = 0
+#iterate the loop
+while t>0: 
+  numLen = numLen+1
+  t = int(t/10)
 
-print("Prime numbers between", lower, "and", upper, "are:")
-#iterate loop from lower limit to upper limit
-for num in range(lower, upper + 1):
-    #All prime numbers are greater than 1
-    if num > 1:
-        for i in range(2, num):
-            if (num % i) == 0:
-                break
-            else:
-                print(num)
+if numLen>=4: #condition 1
+  numLen = int(numLen/2)
+  chk = 0
+  while num>0: #iterate loop
+    rem = num%10
+    if chk==numLen: #nested condition 1
+      midOne = rem
+    elif chk==(numLen-1): 
+      midTwo = rem
+    num = int(num/10)
+    chk = chk+1
+  prod = midOne*midTwo #product of middle digits
+  #display the result
+  print("\nProduct of Mid digits (" +str(midOne)+ "*" +str(midTwo)+ ") = ", prod)
+
+else:
+  print("\nIt's not a 4 or more than 4-digit number!")

@@ -1,10 +1,13 @@
-#Take input
-print("Half Prymaid Pattern of Stars (*):")
-n = int(input("enter the number of rows: "))
-#outer loop to handle number of rows
-for i in range(n):
-    #inner loop to handle number of columns
-    for j in range(i+1):
+#Take input from user
+rows = int(input("Please Enter the total Number of Rows : "))
+number = 1 #initialise by 1
+
+print("Floyd's Triangle")
+#outer loop for number of rows
+for i in range(1, rows + 1):
+    #inner loop for number of columns
+    for j in range(1, i + 1):
         #display result
-        print("* ", end="")
+         print(number, end = ' ')
+         number = number + 1
     print()

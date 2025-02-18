@@ -1,4 +1,14 @@
-n = int(input("Enter the height of the triangle: "))  
+import turtle   #important library
+turtle.Screen().bgcolor("skyblue")
+turtle.Screen().setup(300,400)
+polygon = turtle.Turtle()   #defined variable
 
-for i in range(1, n + 1):  
-    print(' ' * (n - i) + '*' * i)
+num_sides = 6   #variable
+side_length = 70
+angle = 360.0 / num_sides
+#literate loop for total number of side
+for i in range(num_sides):
+    polygon.forward(side_length)
+    polygon.right(angle)
+
+turtle.done()

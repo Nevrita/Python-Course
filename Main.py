@@ -1,30 +1,12 @@
-import turtle
-
-turtle.Screen().bgcolor("lavender")
-board = turtle.Turtle()
-
-# first triangle for star
-board.forward(100)     # draw base
-
-board.left(120)
-board.forward(100)
-
-board.left(120)
-board.forward(100)
-
-board.penup()
-board.right(150)
-board.forward(50)
-
-# second triangle for star
-board.pendown()
-board.right(90)
-board.forward(100)
-
-board.right(120)
-board.forward(100)
-
-board.right(120)
-board.forward(100)
-
-turtle.done()
+import turtle               # importing library       
+my_wn = turtle.Screen()
+my_wn.bgcolor("light blue") # screen background color
+my_wn.title("Turtle")
+my_pen = turtle.Turtle()
+size = 0
+while True:                 #iterate loop
+  for i in range(4): 
+    my_pen.fd(size + 1)
+    my_pen.left(90)
+    size = size - 5
+  size = size + 1

@@ -1,35 +1,34 @@
-import turtle  
+def add(P, Q):
+    return P+Q
 
-# Get user input  
-name = turtle.textinput("Input", "Enter your name:")  
+def subtract(P, Q):
+    return P - Q
 
-# Set up turtle  
-turtle.bgcolor("dark blue")  
-turtle.color("white")  
-turtle.speed(1)  
+def multiply(P, Q):
+    return P * Q
 
-# Draw a larger square  
-turtle.penup()  
-turtle.goto(-150, 100)  # Move to starting position to center the square  
-turtle.pendown()  
-for _ in range(4):  
-    turtle.forward(300)  # Increased size for the square  
-    turtle.right(90)  
+def divide(P, Q):
+    return P / Q
 
-# Move to center to write welcome message  
-turtle.penup()  
-turtle.goto(0, 20)  # Centered in the square  
-turtle.pendown()  
-turtle.color("white")  
-welcome_message = f"Welcome {name}" if name else "Welcome User"  
-turtle.write(welcome_message, align="center", font=("Arial", 18, "normal"))  
+# Now we will take inputs from the user
+print("Please select operation.")
+print("a. Add")
+print("b. Subtract")
+print("c. Multiply")
+print("d. Divide")
 
-# Move below the square to write the project message  
-turtle.penup()  
-turtle.goto(0, -50)  # Position below the square  
-turtle.pendown()  
-turtle.write("The project is made by \n Meher Nigar Hridy", align="center", font=("Arial", 14, "bold"))  
+choice = input("Please enter choice (a/b/c/d):")
 
-# Hide turtle and finish  
-turtle.hideturtle()  
-turtle.done()
+num_1 = int(input("Please enter the first number: "))
+num_2 = int(input("Please enter the second number"))
+
+if choice == 'a':
+    print(num_1, "+", num_2, "=", add(num_1, num_2))
+elif choice == 'b':
+    print(num_1, "-", num_2, "=", subtract(num_1, num_2))
+elif choice == 'c':
+    print(num_1, "*", num_2, "=", multiply(num_1, num_2))
+elif choice == 'd':
+    print(num_1, "/", num_2, "=", divide(num_1, num_2))
+else:
+    print("This is an invalid input")

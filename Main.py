@@ -1,6 +1,11 @@
-# function to find cube
-def cube(num):
-    return num * num * num
+def shutdown():  
+    user_input = input("Do you want to shut down? (Yes/No): ")  
 
-num = 5
-print(f"The cube of {num} is {cube(num)}")
+    if user_input == "Yes":  
+        print("Shutting down...")  
+    elif user_input == "No":  
+        print("Hold on, we're not shutting down just yet!")  
+    else:  
+        print("Sorry.") 
+
+shutdown()

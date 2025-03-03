@@ -1,11 +1,15 @@
-# Take user input
-a = input ("Enter a word: ")
-#program to check break keyword
-for i in a:         # Iterate for loop
-    if (i == 'A'):  # Condition 1
-    # Display result
-        print ("A is found")
-        break
-    else:
-    # Display result   
-        print ("A not found")
+for x in range(10):     # Iterate for loop
+    if x % 20 == 0:     # Condition 1
+        print("twist")
+
+    elif x % 15 == 0:   # Condition 2
+        pass            # Pass statement
+
+    elif x % 5 == 0:    # Condition 3
+        print("fizz")   # Display result
+
+    elif x % 3 == 0:    # Condition 4
+        print("buzz")   # Display result
+
+    else:               # Condition 5
+        print(x)        # Display result

@@ -1,21 +1,15 @@
-try:  
-    age_input = input("Please enter your age: ")  
-    
-    age = int(age_input)  
+import random
+playing = True
+number = str(random.randint(10,20))
 
-    if age < 0:  
-        raise ValueError("Age cannot be negative.")
-    
-    if age % 2 == 0:  
-        print("The age " + str(age) + " is even.")  
-    else:  
-        print("The age " + str(age) + " is odd.")  
+print("I will generate a number from 10 to 20, and you will have to guess the number one digit at a time.")
+print("The game ends when you get 1 hero!!!")
+while playing:
+    guess = input("Give me your BEST GUESS!!! \n")
+    if number == guess:
+        print("You have WON the Game!!!")
+        print("The number was", number)
+        break
 
-except ValueError as e:  
-    print("Value error: " + str(e) + ". Please enter a valid integer for your age.")  
-
-except Exception as e:  
-    print("An unexpected error occurred: " + str(e))  
-
-finally:  
-    print("The age verification process has been completed successfully!!!")  
+    else:
+        print("Your guess isn't quite right, try again. \n")

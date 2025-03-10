@@ -1,21 +1,8 @@
-import random
+import math
+print(math.sin(45))
+print(math.cos(45))
+print(math.tan(45))
 
-options = ["Rock", "Paper", "Scissors"]
-
-user_choice = input("Choose Rock, Paper, or Scissors: ")
-
-computer_choice = random.choice(options)
-
-print("You chose: ", user_choice)
-print("Computer chose (drumroll please!!!): ", computer_choice)
-
-if user_choice == computer_choice:
-    print("It's a tie!")
-elif user_choice == "Rock" and computer_choice == "Scissors":
-    print("Rock smashes scissors! You have won!!!")
-elif user_choice == "Paper" and computer_choice == "Rock":
-    print("Paper can cover rock! You have won!!!")
-elif user_choice == "Scissors" and computer_choice == "Paper":
-    print("Scissors can cut papers! You have won!!!")
-else:
-    print("Unfortunately you have Lost the game! Better luck next time")
+print(math.ceil(45.490))
+print(math.floor(45.890))
+print(math.factorial(5))

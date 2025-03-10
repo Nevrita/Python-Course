@@ -1,15 +1,21 @@
 import random
-playing = True
-number = str(random.randint(10,20))
 
-print("I will generate a number from 10 to 20, and you will have to guess the number one digit at a time.")
-print("The game ends when you get 1 hero!!!")
-while playing:
-    guess = input("Give me your BEST GUESS!!! \n")
-    if number == guess:
-        print("You have WON the Game!!!")
-        print("The number was", number)
-        break
+options = ["Rock", "Paper", "Scissors"]
 
-    else:
-        print("Your guess isn't quite right, try again. \n")
+user_choice = input("Choose Rock, Paper, or Scissors: ")
+
+computer_choice = random.choice(options)
+
+print("You chose: ", user_choice)
+print("Computer chose (drumroll please!!!): ", computer_choice)
+
+if user_choice == computer_choice:
+    print("It's a tie!")
+elif user_choice == "Rock" and computer_choice == "Scissors":
+    print("Rock smashes scissors! You have won!!!")
+elif user_choice == "Paper" and computer_choice == "Rock":
+    print("Paper can cover rock! You have won!!!")
+elif user_choice == "Scissors" and computer_choice == "Paper":
+    print("Scissors can cut papers! You have won!!!")
+else:
+    print("Unfortunately you have Lost the game! Better luck next time")

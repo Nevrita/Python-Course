@@ -1,14 +1,9 @@
-def information():
-    print("learning python")
-    print("using Visual Studio Code platform")
+import calendar  
 
-information()
-information()
-information()
-information()
-information()
+def print_months(year):  
+    for mm in range(1, 13):  
+        month_name = calendar.month_name[mm]  
+        print(month_name)
 
-def add(num1,num2):
-  return num1+num2
-
-print(add(3,5))
+yy = 2025
+print_months(yy)

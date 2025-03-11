@@ -1,9 +1,15 @@
-import math  
+import random
 
-print(math.sin(math.radians(0)))  
-print(math.cos(math.radians(30)))  
-print(math.tan(math.radians(45)))  
+import time
 
-print(math.ceil(45.490))  
-print(math.floor(45.890))  
-print(math.factorial(5))  
+
+def getRandomDate(startDate, endDate):
+    print("Printing random date between", startDate, "and", endDate)
+    randomGenerator = random.random()
+    dateFormat = '%m/%d/%Y'
+    starttime = time.mktime(time.strptime(startDate, dateFormat))
+    endtime = time.mktime(time.strptime(endDate, dateFormat))
+    randomTime = starttime + randomGenerator * (endtime - starttime)
+    randomDate = time.strftime(dateFormat, time.localtime(randomTime))
+    return randomDate
+print("Random Date = ", getRandomDate("1/1/2020", "12/12/2025"))

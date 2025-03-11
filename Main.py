@@ -1,15 +1,12 @@
-import random
+def hotel_cost(nights):
+    return 140*nights
 
-import time
-
-
-def getRandomDate(startDate, endDate):
-    print("Printing random date between", startDate, "and", endDate)
-    randomGenerator = random.random()
-    dateFormat = '%m/%d/%Y'
-    starttime = time.mktime(time.strptime(startDate, dateFormat))
-    endtime = time.mktime(time.strptime(endDate, dateFormat))
-    randomTime = starttime + randomGenerator * (endtime - starttime)
-    randomDate = time.strftime(dateFormat, time.localtime(randomTime))
-    return randomDate
-print("Random Date = ", getRandomDate("1/1/2020", "12/12/2025"))
+def plane_ride_cost(city):
+    if "Charlotte" == city:
+        return 183
+    elif "Tampa" == city:
+        return 220
+    elif "Pittsburgh" == city:
+        return 222
+    elif "Los Angeles" == city:
+        return 475

@@ -1,15 +1,26 @@
-# function to check whether 
-# first and last character of words match
-def match_words(words):
-    ctr = 0
-    lst = []
-    for word in words:
-        if len(word) > 1 and word[0] == word[-1]:
-         ctr += 1
-         lst.append(word)
+L = [4, 5, 1, 2,  9, 7, 10, 8]
+print("Original List :", L)
 
-    print("List of words with first and last character same\n", lst)
-    return ctr
+# variable to store the sum of 
+# the list
+count = 0
 
-count = match_words(['abc', 'cfc', 'xyz', 'aba', '1221'])
-print("Number of words having first and last character same")
+# Finding the sum
+for i in L:
+    count += i
+
+# divide the total elements by
+# number of elements
+avg =  count/len(L)
+
+print("sum = ", count)
+print("avarage = ", avg)
+
+# Sorting the elements of the list
+L.sort()
+
+# printing the first element
+print("Smallest element is;", L[0])
+
+# printing the last element
+print("Largest element is:", L[-1])

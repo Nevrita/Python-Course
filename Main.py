@@ -1,16 +1,15 @@
-#Create an empty list
-empty_list = []
-print()
+# function to check whether 
+# first and last character of words match
+def match_words(words):
+    ctr = 0
+    lst = []
+    for word in words:
+        if len(word) > 1 and word[0] == word[-1]:
+         ctr += 1
+         lst.append(word)
 
-# A list of numbers
-numbers = [1, 2, 3, 4, 5]
-print(numbers)
+    print("List of words with first and last character same\n", lst)
+    return ctr
 
-# Use * operator
-triples = [1, 2, 3] * 3
-print(triples)
-
-#reverse the given list
-alist = [100, 200, 300, 400, 500]
-alist = alist[::-1]
-print(alist,"\n")
+count = match_words(['abc', 'cfc', 'xyz', 'aba', '1221'])
+print("Number of words having first and last character same")

@@ -1,9 +1,16 @@
-import calendar  
+#Create an empty list
+empty_list = []
+print()
 
-def print_months(year):  
-    for mm in range(1, 13):  
-        month_name = calendar.month_name[mm]  
-        print(month_name)
+# A list of numbers
+numbers = [1, 2, 3, 4, 5]
+print(numbers)
 
-yy = 2025
-print_months(yy)
+# Use * operator
+triples = [1, 2, 3] * 3
+print(triples)
+
+#reverse the given list
+alist = [100, 200, 300, 400, 500]
+alist = alist[::-1]
+print(alist,"\n")

@@ -1,26 +1,20 @@
-L = [4, 5, 1, 2,  9, 7, 10, 8]
-print("Original List :", L)
+def get_range():  
+    start = int(input("Enter the starting number: "))  
+    end = int(input("Enter the ending number: "))  
+    return start, end  
 
-# variable to store the sum of 
-# the list
-count = 0
+def calculate_squares(start, end):  
+    return [i ** 2 for i in range(start, end + 1)]  
 
-# Finding the sum
-for i in L:
-    count += i
+def filter_odd_squares(squares):  
+    odd_squares = []  
+    for square in squares:  
+        if square % 2 != 0:  
+            odd_squares.append(square)  
+    return odd_squares  
+  
+start, end = get_range()  
+squares = calculate_squares(start, end)  
+odd_squares = filter_odd_squares(squares)  
 
-# divide the total elements by
-# number of elements
-avg =  count/len(L)
-
-print("sum = ", count)
-print("avarage = ", avg)
-
-# Sorting the elements of the list
-L.sort()
-
-# printing the first element
-print("Smallest element is;", L[0])
-
-# printing the last element
-print("Largest element is:", L[-1])
+print("Odd squares:", odd_squares)

@@ -1,17 +1,14 @@
-# function to check whether palindrome or not
-def palind(r):
-    e = len(r) -1
-    s = 0
-    while(s < e):
-        if (r[s]!=r[e]):
-            return False
-        s += 1
-        e -= 1
-    return True
+tup1 = (4, 3, 2, 2, -1, 18)  
+tup2 = (2, 4, 8, 3, 2, 9)  
 
-r = (1,2,3,3,2,1)
+def calculate_product(tup):  
+    product = 1  
+    for num in tup:  
+        product *= num  
+    return product  
 
-if(palind(r)):
-    print("The Tuple is Flip-Flop")
-else:
-    print("The Tuple is not Flip-Flop")
+product1 = calculate_product(tup1)  
+product2 = calculate_product(tup2)  
+
+print("Product of tup1:", product1)  
+print("Product of tup2:", product2)  

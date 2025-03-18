@@ -1,20 +1,26 @@
-def get_range():  
-    start = int(input("Enter the starting number: "))  
-    end = int(input("Enter the ending number: "))  
-    return start, end  
+#Create a tuple with different data types
+tuplex = ("tuple", False, 3.2, 1)
+print(tuplex)
 
-def calculate_squares(start, end):  
-    return [i ** 2 for i in range(start, end + 1)]  
+#create a tuple
+tuplex = (4, 6, 2, 8, 3, 1)
+print(tuplex)
 
-def filter_odd_squares(squares):  
-    odd_squares = []  
-    for square in squares:  
-        if square % 2 != 0:  
-            odd_squares.append(square)  
-    return odd_squares  
-  
-start, end = get_range()  
-squares = calculate_squares(start, end)  
-odd_squares = filter_odd_squares(squares)  
+#tuples are immutable, so you can not add new elements
+#using merge of tuples with the + operator you can add an element and it will create a new tuple
+tuplex = tuplex + (9,)
+print(tuplex)
 
-print("Odd squares:", odd_squares)
+#Counts the number of occurrences of item 50 from a tuple
+tuple1 = (50, 10, 60, 70, 50)
+print(tuple1.count(50))
+
+#create a tuple
+tuplex = (2, 4, 3, 5, 4, 6, 7, 8, 6, 1)
+#used tuple[start:stop] the start index is inclusive and the stop index
+_slice = tuplex[3:5]
+#is exclusive
+print(_slice)
+#if the start index isn't defined, is taken from the beg inning of the tuple
+_slice = tuplex[:6]
+print(_slice)

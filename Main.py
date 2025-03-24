@@ -1,14 +1,29 @@
-tup1 = (4, 3, 2, 2, -1, 18)  
-tup2 = (2, 4, 8, 3, 2, 9)  
+student_data = {'id1': 
+   {'name': ['Sara'], 
+    'class': ['V'], 
+    'subject_integration': ['english, math, science']
+   },
+ 'id2': 
+  {'name': ['David'], 
+    'class': ['V'], 
+    'subject_integration': ['english, math, science']
+   },
+ 'id3': 
+    {'name': ['Sara'], 
+    'class': ['V'], 
+    'subject_integration': ['english, math, science']
+   },
+ 'id4': 
+   {'name': ['Surya'], 
+    'class': ['V'], 
+    'subject_integration': ['english, math, science']
+   },
+}
 
-def calculate_product(tup):  
-    product = 1  
-    for num in tup:  
-        product *= num  
-    return product  
+result = {}
 
-product1 = calculate_product(tup1)  
-product2 = calculate_product(tup2)  
+for key,value in student_data.items():
+    if value not in result.values():
+        result[key] = value
 
-print("Product of tup1:", product1)  
-print("Product of tup2:", product2)  
+print(result)

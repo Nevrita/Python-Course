@@ -1,13 +1,11 @@
-import array as arr
+set1_A = {'blue', 'white'}  
+set2_A = {'white', 'black'}  
 
-# create an array
-array_num = arr.array('i', [1, 3, 5, 3, 7, 9, 3])
-print("Original array: " + str(array_num))
+symmetric_difference_A = set1_A.symmetric_difference(set2_A)  
+print("Symmetric Difference A: ", symmetric_difference_A)  
 
-# count number of occurences
-print("Number of occurrences of the number 3 in the said array: " + str(array_num))
+set1_B = {1, 2, 3, 4, 5}  
+set2_B = {1, 5, 6, 7, 8, 9}  
 
-# reverse the array 
-array_num.reverse()
-print("Reverse the order of hte items: ")
-print(str(array_num))
+symmetric_difference_B = set1_B.symmetric_difference(set2_B)  
+print("Symmetric Difference B: ", symmetric_difference_B)  

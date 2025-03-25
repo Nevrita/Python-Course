@@ -1,12 +1,20 @@
-test_dict = {'Codingal': 3, 'is': 2, 'best': 2, 'for': 2, 'Coding': 1}  
+# Different types of sets in Python
+# set of integers
+my_set = {1, 2, 3}
+print(my_set)
 
-print("The original dictionary : " + str(test_dict))  
+# set of mixed datatypes
+my_set = {1, 2, 3, 4, 3, 2}
+print(my_set)
 
-K = int(input("Enter the value to check the frequency: "))  
+# we can make set from a list
+my_set = set([1, 2, 3, 2])
+print(my_set, "\n")
 
-result = 0  
-for key in test_dict:  
-    if test_dict[key] == K:  
-        result += 1 
-
-print("Frequency of", K, "is :", result)  
+#remove a number from a set
+num_set = set([0, 1, 3, 4, 5])
+print("Original set: ")
+print(num_set)
+num_set.pop()
+print("After removing the first element from the said set: ")
+print(num_set, "\n")

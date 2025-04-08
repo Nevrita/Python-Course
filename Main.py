@@ -35,7 +35,7 @@ def generate_hints(password):
     return "The password contains " + ', '.join(clues) + ". " + ' and '.join(specific_hints) + "."  
 
 def game():  
-    print("Hello! Welcome to the Password Game. This is MEHER, the creator of the Password Game.")  
+    print("Hello! Welcome to the Password Game. This is MEHER, the creator of this Password Game.")  
     name = input("May I know your name? ")  
     
     print("\nHello, " + name + "! Here are the rules:")  

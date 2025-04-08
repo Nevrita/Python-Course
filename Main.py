@@ -1,73 +1,73 @@
-# Import necessary modules
-import random 
-import time
+import random  
 
-# Pick a number between 1 and 100
-number=random.randint(1, 100) 
+def generate_random_password(length=8):  
+    characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz' + '0123456789' + '!@#$%^&*()'  
+    password = ''.join(random.choice(characters) for _ in range(length))  
+    return ''.join(random.sample(password, len(password)))  
 
-def intro():
-	print("May I ask you for your name?")
-	# declaring name variable global so it can be accessed outside the function
-	global name
-	name = input() #asks for the name
-	print(name + ", we are going to play a game. I am thinking of a number between 1 and 100")
-	if(number%2==0):
-		x='even'
-	else:
-		x='odd'
-	print("\nThis is an {} number".format(x))
-	time.sleep(.5)
-	print("Go ahead. Guess!")
+def generate_hints(password):  
+    upper_case = ''.join(set([char for char in password if char.isupper()]))  
+    lower_case = ''.join(set([char for char in password if char.islower()]))  
+    digits = ''.join(set([char for char in password if char.isdigit()]))  
+    special_characters = ''.join(set([char for char in password if not char.isalnum()]))  
 
-def pick():
-	guessesTaken = 0
+    clues = []  
+    if upper_case:  
+        clues.append("uppercase letters: " + upper_case)  
+    if lower_case:  
+        clues.append("lowercase letters: " + lower_case)  
+    if digits:  
+        clues.append("numbers: " + digits)  
+    if special_characters:  
+        clues.append("special characters: " + special_characters)  
+    
+    min_digit = min(digits) if digits else None  
+    max_digit = max(digits) if digits else None  
 
-	#if the number of guesses is less than 6
-	while guessesTaken < 6:
-		time.sleep(.25)
-		#inserts the place to enter guess
-		enter=input("Guess: ") 
+    specific_hints = []  
+    if lower_case:  
+        specific_hints.append("lowercase letters range from " + min(lower_case) + " to " + max(lower_case))  
+    if upper_case:  
+        specific_hints.append("uppercase letters range from " + min(upper_case) + " to " + max(upper_case))  
+    if min_digit and max_digit:  
+        specific_hints.append("numbers are between " + min_digit + " and " + max_digit)  
 
-		#check if a number was entered
-		try: 
+    return "The password contains " + ', '.join(clues) + ". " + ' and '.join(specific_hints) + "."  
 
-			#stores the guess as an integer instead of a string 
-			guess = int(enter)    
+def game():  
+    print("Hello! Welcome to the Password Game. This is MEHER, the creator of the Password Game.")  
+    name = input("May I know your name? ")  
+    
+    print("\nHello, " + name + "! Here are the rules:")  
+    print("1. A random password will be generated.")  
+    print("2. You will have 5 chances to guess the password.")  
+    print("3. You will be given specific hints based on the generated password.")  
+    print("4. If you guess the correct password, you win!")  
+    print("5. If not, you'll see the correct password at the end.")  
+    print("Hope you will enjoy the game!\n")  
 
-			if guess<=100 and guess>=1: #if they are in range
-				guessesTaken=guessesTaken+1 #adds one guess each time the player is wrong
-				if guessesTaken<6:
-					if guess<number:
-						print("The guess of the number that you have entered is too low")
-					if guess>number:
-						print("The guess of the number that you have entered is too high")
-					if guess != number:
-						time.sleep(.5)
-						print("Try Again!")
-				
-				#if the guess is right, then we are going to jump out of the while block
-					if guess==number:
-						break 
+    while True:  
+        password = generate_random_password()  
+        print("Try to guess the password!")  
 
-			
-			if guess>100 or guess<1: 
-				print("Silly Goose! That number isn't in the range!")
-				time.sleep(.25)
-				print("Please enter a number between 1 and 100")
+        hints = generate_hints(password)  
+        print("Hint: " + hints)  
+        print("Hint: The password is " + str(len(password)) + " characters long.")  
 
-		except: #if a number wasn't entered
-			print("I don't think that "+enter+" is a number. Sorry")
-			
-	if guess == number:
-		guessesTaken = str(guessesTaken)
-		print('Good job, {}! You guessed my number in {} guesses!'.format(name, guessesTaken))
+        for attempt in range(5):  
+            guess = input("Attempt " + str(attempt + 1) + "/5: ")  
+            if guess == password:  
+                print("\nCongo " + name + ", you've guessed the correct password: " + password + "!")  
+                break  
+            else:  
+                print("Your guess is wrong.")  
+        
+        else:  
+            print("The correct password was: " + password)  
 
-	if guess != number:
-		print('Nope. The number I was thinking of was ' + str(number))
+        play_again = input("\nDo you want to play again? (yes/no): ").strip().lower()  
+        if play_again != 'yes':  
+            print("Thanks for playing! Goodbye!")  
+            break  
 
-playagain="yes"
-while playagain=="yes" or playagain=="y" or playagain=="Yes":
-	intro()
-	pick()
-	print("Do you want to play again?")
-	playagain=input()
+game()  

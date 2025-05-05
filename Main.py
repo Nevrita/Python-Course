@@ -1,22 +1,15 @@
-# create class
-class Parrot:
+class Dog:
+    def __init__(self, breed, color):
+        self.breed = breed
+        self.color = color
 
-    # class attribute
-    species = "bird"
+    def display_details(self):
+        print("Breed: " + self.breed + ", Color: " + self.color)
 
-    # instance attribute
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+dog1 = Dog("German Shepherd", "Black and Tan")
+dog2 = Dog("Bulldog", "White")
+dog3 = Dog("Beagle", "Tricolor")
 
-# instantiate the Parrot class
-blu = Parrot("Blu", 10) 
-woo = Parrot("Woo", 15)
-
-# access the class attributes
-print("Blu is a {}".format(blu.species))
-print("Woo is also a {}".format(woo.species))
-
-# access the instance attributes
-print("{} is {} years old".format( blu.name, blu.age))
-print("{} is {} years old".format( woo.name, woo.age))
+dog1.display_details()
+dog2.display_details()
+dog3.display_details()

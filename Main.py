@@ -1,21 +1,20 @@
-# create class
-class IOString():
+# Create Class
+class Employee:
 
-	# constructor to set default value
+    # Initializing 
     def __init__(self):
-        self.str1 = ""
+        print('Emplyee created')
 
-	# function to get input from user
-    def get_String(self):
-        self.str1 = input("Enter String : ")
+    # Calling destructor
+    def __del__(self):
+            print("Destructor called")
 
-	# function to print the string in upper case
-    def print_String(self):
-        print("Result is :", self.str1.upper())
-
-# Object creation
-str1 = IOString()
-
-# Call functions
-str1.get_String()
-str1.print_String()        
+def  Create_obg():
+            print('Making Object...')
+            obj = Employee()
+            print('function end...')
+            return obj
+        
+print('Calling Create_obj() function...')
+obj = Create_obg()
+print('Program End...')

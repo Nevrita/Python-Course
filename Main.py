@@ -1,15 +1,21 @@
-class Dog:
-    def __init__(self, breed, color):
-        self.breed = breed
-        self.color = color
+# create class
+class IOString():
 
-    def display_details(self):
-        print("Breed: " + self.breed + ", Color: " + self.color)
+	# constructor to set default value
+    def __init__(self):
+        self.str1 = ""
 
-dog1 = Dog("German Shepherd", "Black and Tan")
-dog2 = Dog("Bulldog", "White")
-dog3 = Dog("Beagle", "Tricolor")
+	# function to get input from user
+    def get_String(self):
+        self.str1 = input("Enter String : ")
 
-dog1.display_details()
-dog2.display_details()
-dog3.display_details()
+	# function to print the string in upper case
+    def print_String(self):
+        print("Result is :", self.str1.upper())
+
+# Object creation
+str1 = IOString()
+
+# Call functions
+str1.get_String()
+str1.print_String()        

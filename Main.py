@@ -1,20 +1,16 @@
-# Create Class
-class Employee:
 
-    # Initializing 
-    def __init__(self):
-        print('Emplyee created')
+class pair_elements:
 
-    # Calling destructor
-    def __del__(self):
-            print("Destructor called")
+    def twoSum(self, nums, target):
 
-def  Create_obg():
-            print('Making Object...')
-            obj = Employee()
-            print('function end...')
-            return obj
-        
-print('Calling Create_obj() function...')
-obj = Create_obg()
-print('Program End...')
+        lookup ={}
+
+
+        for i, num in enumerate(nums):
+            if target - num in lookup:
+                return (lookup[target - num], i )
+            lookup[num] = i
+
+
+value = int(input("Enter sum for which you want to make this search : "))
+print("index1=%d, index2=%d" % pair_elements().twoSum((10,20,30,40,50,60,70),value))

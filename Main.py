@@ -1,14 +1,12 @@
-class Circle:
-    def __init__(self, radius):
-        self.radius = radius
-    
-    def area(self):
-        return 3.1416 * (self.radius ** 2)
-    
-    def perimeter(self):
-        return 2 * 3.1416 * self.radius
+class Vehicle:
 
-radius = float(input("Enter the radius: "))
-circle = Circle(radius)
-print("Area:", circle.area())
-print("Perimeter:", circle.perimeter())
+    def __init__(self, name, max_speed, mileage):
+        self.name = name
+        self.max_speed = max_speed
+        self.mileage = mileage
+
+class Bus(Vehicle):
+    pass
+
+School_bus = Bus("School Volvo", 180, 12)
+print("Vehicle Name:", School_bus.name, "Speed:", School_bus.max_speed, "Mileage:", School_bus.mileage)

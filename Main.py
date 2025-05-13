@@ -1,21 +1,16 @@
-class Computer:
+class Vehicle:
+    def __init__(self, capacity, fare_per_seat):
+        self.capacity = capacity
+        self.fare_per_seat = fare_per_seat
 
-    def __init__(self):
-        self.__maxprice = 900
+class Bus(Vehicle):
+    def __init__(self, capacity, fare_per_seat):
+        super().__init__(capacity, fare_per_seat)
 
-    def sell(self):
-        print("Selling Price: {}".format(self.__maxprice))
+    def calculate_fare(self, num_passengers):
+        total_fare = self.fare_per_seat * num_passengers * 1.10
+        return total_fare
 
-    def setMaxPrice(self, price):
-        self.__maxprice = price
-
-c = Computer()
-c.sell()
-
-# change the price
-c.__maxprice = 1000
-c.sell()
-
-# using setter function
-c.setMaxPrice(1000)
-c.sell()
+bus = Bus(50, 100)
+fare = bus.calculate_fare(50)
+print("Total fare: INR", fare)

@@ -1,18 +1,13 @@
-# Class creation
-class myClass:
+# Create class
+class Point:
+    def __init__(self, x = 0, y = 0):
+        self.x = x
+        self.y = y
 
-	# private variable
-    __privateVar = 27
-
-	# private method
-    def __privMeth(self):
-        print("I'm inside class myClass")
-
-    # Function to print value of private variable
-    def hello(self):
-        print("Private Variable value:", myClass.__privateVar)
-
-# Object creation and method call
-foo = myClass()
-foo.hello()
-foo.__privMeth
+        # Method to print points in coordinate format
+        def __str__(self):
+            return "({0}, {1})".format(self.x, self.y)
+        
+# Create Object
+p1 = Point(2, 3)
+print(p1)

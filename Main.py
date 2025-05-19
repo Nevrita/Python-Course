@@ -1,11 +1,24 @@
-class ReverseString:
-    def __init__(self, s):
-        self.s = s
+# Import necessary Modules
+from abc import ABC, abstractmethod
 
-    def get_reversed(self):
-        return self.s[::-1]
+# Create base class
+class Absclass(ABC):
 
-word = input("Enter a word: ")
+	# Function to print a value
+    def print(self,x):
+        print("Passed value: ", x)
 
-reverser = ReverseString(word)
-print("Reversed word:", reverser.get_reversed())
+	# Abstract Method
+    @abstractmethod
+    def task(self):
+        print("We are inside Absclass task")
+
+# Create sub class
+class test_class(Absclass):
+    def task(self):
+        print("We are inside test_class task")
+
+#object of test_class created
+test_obj = test_class()
+test_obj.task()
+test_obj.print(100)

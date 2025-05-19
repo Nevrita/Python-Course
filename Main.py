@@ -1,31 +1,43 @@
-# Class 1
-class India():
-    def capital(self):
-        print("New Delhi is the capital of India.")
- 
-    def language(self):
-        print("Hindi is the most widely spoken language of India.")
- 
-    def type(self):
-        print("India is a developing country.")
- 
-# Class 2
-class USA():
-    def capital(self):
-        print("Washington, D.C. is the capital of USA.")
- 
-    def language(self):
-        print("English is the primary language of USA.")
- 
-    def type(self):
-        print("USA is a developed country.")
- 
-# Object Creation
-obj_ind = India()
-obj_usa = USA()
+class Car:
+    def __init__(self, fuel_type, max_speed):
+        self.fuel_type = fuel_type
+        self.max_speed = max_speed
 
-# Common Interface
-for country in (obj_ind, obj_usa):
-    country.capital()
-    country.language()
-    country.type()
+    def display_info(self):
+        print("Fuel Type:", self.fuel_type)
+        print("Max Speed:", self.max_speed, "km/h")
+
+class BMW(Car):
+    def __init__(self, fuel_type, max_speed):
+        super().__init__(fuel_type, max_speed)
+
+    def task(self):
+        print("Car: BMW")
+        self.display_info()
+
+    def print(self, value):
+        print("Value:", value)
+
+class Ferrari(Car):
+    def __init__(self, fuel_type, max_speed):
+        super().__init__(fuel_type, max_speed)
+
+    def task(self):
+        print("Car: Ferrari")
+        self.display_info()
+
+    def print(self, value):
+        print("Value:", value)
+
+obj_bmw = BMW("Petrol", 250)
+obj_ferrari = Ferrari("Petrol", 330)
+
+obj_bmw.task()
+obj_bmw.print(100)
+
+print()
+
+obj_ferrari.task()
+obj_ferrari.print(100)
+
+print()

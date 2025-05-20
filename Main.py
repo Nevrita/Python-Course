@@ -1,43 +1,26 @@
-class Car:
-    def __init__(self, fuel_type, max_speed):
-        self.fuel_type = fuel_type
-        self.max_speed = max_speed
+# Python program to overload equality
+# and less than operators
 
-    def display_info(self):
-        print("Fuel Type:", self.fuel_type)
-        print("Max Speed:", self.max_speed, "km/h")
+class A:
+    def __init__(self, a):
+        self.a = a
+    def __lt__(self, other):
+        if(self.a < other.a):
+            return "ob1 is less than ob2"
+        else:
+            return "ob2 is less than ob1"
+    def __eq__(self, other):
+        if(self.a == other.a):
+            return "Both are equal"
+        else:
+            return "Not equal"
+        
+ob1 = A(2)
+ob2 = A(3)
+print("Passed Values :", ob1.a, ob2.a)
+print(ob1 < ob2)
 
-class BMW(Car):
-    def __init__(self, fuel_type, max_speed):
-        super().__init__(fuel_type, max_speed)
-
-    def task(self):
-        print("Car: BMW")
-        self.display_info()
-
-    def print(self, value):
-        print("Value:", value)
-
-class Ferrari(Car):
-    def __init__(self, fuel_type, max_speed):
-        super().__init__(fuel_type, max_speed)
-
-    def task(self):
-        print("Car: Ferrari")
-        self.display_info()
-
-    def print(self, value):
-        print("Value:", value)
-
-obj_bmw = BMW("Petrol", 250)
-obj_ferrari = Ferrari("Petrol", 330)
-
-obj_bmw.task()
-obj_bmw.print(100)
-
-print()
-
-obj_ferrari.task()
-obj_ferrari.print(100)
-
-print()
+ob3 = A(4)
+ob4 = A(4)
+print("Passed Values :", ob3.a, ob4.a)
+print(ob3 == ob4)

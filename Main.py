@@ -1,46 +1,24 @@
 import pygame
 
-# Initialize Pygame and screen dimensions
 pygame.init()
-SCREEN_WIDTH, SCREEN_HEIGHT = 500, 500
-
-# Initialize display surface and set title
-display_surface = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption('Adding image and background image')
-
-# Load and scale images directly
-background_image = pygame.transform.scale(
-    pygame.image.load('background.png').convert(),
-    (SCREEN_WIDTH, SCREEN_HEIGHT))
-
-penguin_image = pygame.transform.scale(
-    pygame.image.load('hello penguin.png').convert_alpha(), (200, 200))
-penguin_rect = penguin_image.get_rect(center=(SCREEN_WIDTH // 2,
-                                              SCREEN_HEIGHT // 2 - 30))
-
-# Initialize font, render text, and set text position
-text = pygame.font.Font(None, 36).render('Hello World ', True,
-                                         pygame.Color('black'))
-text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 110))
-
-
-def game_loop():
-  clock = pygame.time.Clock()
-  running = True
-  while running:
+# Create the display surface object of specific dimension.
+window = pygame.display.set_mode((400, 400))
+# Fill the screen with white color
+window.fill((255, 255, 255))
+# Define colors
+GREEN = (0, 255, 0)
+# Draw solid circle
+pygame.draw.circle(window, GREEN, (300, 300), 50)
+# Draw outlined circle
+pygame.draw.circle(window, GREEN, (100, 100), 50, 3)
+# Draws the surface object to the screen.
+pygame.display.update()
+# Game loop
+running = True
+while running:
+    # Event handling
     for event in pygame.event.get():
-      if event.type == pygame.QUIT:
-        running = False
-
-    display_surface.blit(background_image, (0, 0))
-    display_surface.blit(penguin_image, penguin_rect)
-    display_surface.blit(text, text_rect)
-
-    pygame.display.flip()
-    clock.tick(30)
-
-  pygame.quit()
-
-
-if __name__ == '__main__':
-  game_loop()
+        if event.type == pygame.QUIT:
+            running = False
+# Quit pygame
+pygame.quit()

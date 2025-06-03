@@ -1,121 +1,87 @@
 import pygame
 import random
 
+# Constants for easier adjustments
+SCREEN_WIDTH, SCREEN_HEIGHT = 500, 400
+MOVEMENT_SPEED = 5
+FONT_SIZE = 72
+
 # Initialize Pygame
 pygame.init()
 
-# Custom event IDs for color change events
-SPRITE_COLOR_CHANGE_EVENT = pygame.USEREVENT + 1
-BACKGROUND_COLOR_CHANGE_EVENT = pygame.USEREVENT + 2
+# Load and transform the background image
+background_image = pygame.transform.scale(pygame.image.load("bg.jpg"),
+                                          (SCREEN_WIDTH, SCREEN_HEIGHT))
 
-# Define basic colors using pygame.Color
-# Background colors
-BLUE = pygame.Color('blue')
-LIGHTBLUE = pygame.Color('lightblue')
-DARKBLUE = pygame.Color('darkblue')
+# Load font once at the beginning
+font = pygame.font.SysFont("Times New Roman", FONT_SIZE)
 
-# Sprite colors
-YELLOW = pygame.Color('yellow')
-MAGENTA = pygame.Color('magenta')
-ORANGE = pygame.Color('orange')
-WHITE = pygame.Color('white')
-
-
-# Sprite class representing the moving object
 class Sprite(pygame.sprite.Sprite):
 
-  # Constructor method
   def __init__(self, color, height, width):
-    # Call to the parent class (Sprite) constructor
     super().__init__()
-    # Create the sprite's surface with dimensions and color
     self.image = pygame.Surface([width, height])
-    self.image.fill(color)
-    # Get the sprite's rect defining its position and size
+    self.image.fill(pygame.Color('dodgerblue'))  # Background color of sprite
+    pygame.draw.rect(self.image, color, pygame.Rect(0, 0, width, height))
     self.rect = self.image.get_rect()
-    # Set initial velocity with random direction
-    self.velocity = [random.choice([-1, 1]), random.choice([-1, 1])]
 
-  # Method to update the sprite's position
-  def update(self):
-    # Move the sprite by its velocity
-    self.rect.move_ip(self.velocity)
-    # Flag to track if the sprite hits a boundary
-    boundary_hit = False
-    # Check for collision with left or right boundaries and reverse direction
-    if self.rect.left <= 0 or self.rect.right >= 500:
-      self.velocity[0] = -self.velocity[0]
-      boundary_hit = True
-    # Check for collision with top or bottom boundaries and reverse direction
-    if self.rect.top <= 0 or self.rect.bottom >= 400:
-      self.velocity[1] = -self.velocity[1]
-      boundary_hit = True
-
-    # If a boundary was hit, post events to change colors
-    if boundary_hit:
-      pygame.event.post(pygame.event.Event(SPRITE_COLOR_CHANGE_EVENT))
-      pygame.event.post(pygame.event.Event(BACKGROUND_COLOR_CHANGE_EVENT))
-
-  # Method to change the sprite's color
-  def change_color(self):
-    self.image.fill(random.choice([YELLOW, MAGENTA, ORANGE, WHITE]))
+  def move(self, x_change, y_change):
+    self.rect.x = max(
+        min(self.rect.x + x_change, SCREEN_WIDTH - self.rect.width), 0)
+    self.rect.y = max(
+        min(self.rect.y + y_change, SCREEN_HEIGHT - self.rect.height), 0)
 
 
-# Function to change the background color
-def change_background_color():
-  global bg_color
-  bg_color = random.choice([BLUE, LIGHTBLUE, DARKBLUE])
+# Setup
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("Sprite Collision")
+all_sprites = pygame.sprite.Group()
 
+# Create sprites
+sprite1 = Sprite(pygame.Color('black'), 20, 30)
+sprite1.rect.x, sprite1.rect.y = random.randint(
+    0, SCREEN_WIDTH - sprite1.rect.width), random.randint(
+        0, SCREEN_HEIGHT - sprite1.rect.height)
+all_sprites.add(sprite1)
 
-# Create a group to hold the sprite
-all_sprites_list = pygame.sprite.Group()
-# Instantiate the sprite
-sp1 = Sprite(WHITE, 20, 30)
-# Randomly position the sprite
-sp1.rect.x = random.randint(0, 480)
-sp1.rect.y = random.randint(0, 370)
-# Add the sprite to the group
-all_sprites_list.add(sp1)
+sprite2 = Sprite(pygame.Color('red'), 20, 30)
+sprite2.rect.x, sprite2.rect.y = random.randint(
+    0, SCREEN_WIDTH - sprite2.rect.width), random.randint(
+        0, SCREEN_HEIGHT - sprite2.rect.height)
+all_sprites.add(sprite2)
 
-# Create the game window
-screen = pygame.display.set_mode((500, 400))
-# Set the window title
-pygame.display.set_caption("Colorful Bounce")
-# Set the initial background color
-bg_color = BLUE
-# Apply the background color
-screen.fill(bg_color)
-
-# Game loop control flag
-exit = False
-# Create a clock object to control frame rate
+# Game loop control variables
+running, won = True, False
 clock = pygame.time.Clock()
 
 # Main game loop
-while not exit:
-  # Event handling loop
+while running:
   for event in pygame.event.get():
-    # If the window's close button is clicked, exit the game
-    if event.type == pygame.QUIT:
-      exit = True
-    # If the sprite color change event is triggered, change the sprite's color
-    elif event.type == SPRITE_COLOR_CHANGE_EVENT:
-      sp1.change_color()
-    # If the background color change event is triggered, change the background color
-    elif event.type == BACKGROUND_COLOR_CHANGE_EVENT:
-      change_background_color()
+    if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN
+                                     and event.key == pygame.K_x):
+      running = False
 
-  # Update all sprites
-  all_sprites_list.update()
-  # Fill the screen with the current background color
-  screen.fill(bg_color)
-  # Draw all sprites to the screen
-  all_sprites_list.draw(screen)
+  if not won:
+    keys = pygame.key.get_pressed()
+    x_change = (keys[pygame.K_RIGHT] - keys[pygame.K_LEFT]) * MOVEMENT_SPEED
+    y_change = (keys[pygame.K_DOWN] - keys[pygame.K_UP]) * MOVEMENT_SPEED
+    sprite1.move(x_change, y_change)
 
-  # Refresh the display
+    if sprite1.rect.colliderect(sprite2.rect):
+      all_sprites.remove(sprite2)
+      won = True
+
+  # Drawing
+  screen.blit(background_image, (0, 0))
+  all_sprites.draw(screen)
+
+  # Display win message
+  if won:
+    win_text = font.render("You win!", True, pygame.Color('black'))
+    screen.blit(win_text, ((SCREEN_WIDTH - win_text.get_width()) // 2,
+                           (SCREEN_HEIGHT - win_text.get_height()) // 2))
+
   pygame.display.flip()
-  # Limit the frame rate to 240 fps
-  clock.tick(240)
+  clock.tick(90)
 
-# Uninitialize all pygame modules and close the window
 pygame.quit()

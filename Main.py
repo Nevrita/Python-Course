@@ -1,87 +1,52 @@
 import pygame
-import random
+import math
 
-# Constants for easier adjustments
-SCREEN_WIDTH, SCREEN_HEIGHT = 500, 400
-MOVEMENT_SPEED = 5
-FONT_SIZE = 72
-
-# Initialize Pygame
 pygame.init()
 
-# Load and transform the background image
-background_image = pygame.transform.scale(pygame.image.load("bg.jpg"),
-                                          (SCREEN_WIDTH, SCREEN_HEIGHT))
+screen = pygame.display.set_mode((400, 300))
+pygame.display.set_caption("Moving and Color Changing Sprites")
 
-# Load font once at the beginning
-font = pygame.font.SysFont("Times New Roman", FONT_SIZE)
+sprite1 = pygame.Surface((50, 50))
+sprite2 = pygame.Surface((50, 50))
 
-class Sprite(pygame.sprite.Sprite):
+x1, x2 = 50, 150
+angle = 0
 
-  def __init__(self, color, height, width):
-    super().__init__()
-    self.image = pygame.Surface([width, height])
-    self.image.fill(pygame.Color('dodgerblue'))  # Background color of sprite
-    pygame.draw.rect(self.image, color, pygame.Rect(0, 0, width, height))
-    self.rect = self.image.get_rect()
-
-  def move(self, x_change, y_change):
-    self.rect.x = max(
-        min(self.rect.x + x_change, SCREEN_WIDTH - self.rect.width), 0)
-    self.rect.y = max(
-        min(self.rect.y + y_change, SCREEN_HEIGHT - self.rect.height), 0)
-
-
-# Setup
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Sprite Collision")
-all_sprites = pygame.sprite.Group()
-
-# Create sprites
-sprite1 = Sprite(pygame.Color('black'), 20, 30)
-sprite1.rect.x, sprite1.rect.y = random.randint(
-    0, SCREEN_WIDTH - sprite1.rect.width), random.randint(
-        0, SCREEN_HEIGHT - sprite1.rect.height)
-all_sprites.add(sprite1)
-
-sprite2 = Sprite(pygame.Color('red'), 20, 30)
-sprite2.rect.x, sprite2.rect.y = random.randint(
-    0, SCREEN_WIDTH - sprite2.rect.width), random.randint(
-        0, SCREEN_HEIGHT - sprite2.rect.height)
-all_sprites.add(sprite2)
-
-# Game loop control variables
-running, won = True, False
+running = True
 clock = pygame.time.Clock()
 
-# Main game loop
 while running:
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN
-                                     and event.key == pygame.K_x):
-      running = False
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
-  if not won:
-    keys = pygame.key.get_pressed()
-    x_change = (keys[pygame.K_RIGHT] - keys[pygame.K_LEFT]) * MOVEMENT_SPEED
-    y_change = (keys[pygame.K_DOWN] - keys[pygame.K_UP]) * MOVEMENT_SPEED
-    sprite1.move(x_change, y_change)
+    angle += 0.05
+    color1 = (
+        int((math.sin(angle) + 1) * 127),
+        0,
+        int((math.cos(angle) + 1) * 127)
+    )
+    color2 = (
+        0,
+        int((math.sin(angle + math.pi/2) + 1) * 127),
+        int((math.cos(angle + math.pi/2) + 1) * 127)
+    )
 
-    if sprite1.rect.colliderect(sprite2.rect):
-      all_sprites.remove(sprite2)
-      won = True
+    sprite1.fill(color1)
+    sprite2.fill(color2)
 
-  # Drawing
-  screen.blit(background_image, (0, 0))
-  all_sprites.draw(screen)
+    x1 += 1
+    x2 += 1
 
-  # Display win message
-  if won:
-    win_text = font.render("You win!", True, pygame.Color('black'))
-    screen.blit(win_text, ((SCREEN_WIDTH - win_text.get_width()) // 2,
-                           (SCREEN_HEIGHT - win_text.get_height()) // 2))
+    if x1 > 350:
+        x1 = 0
+    if x2 > 350:
+        x2 = 0
 
-  pygame.display.flip()
-  clock.tick(90)
+    screen.fill((255, 255, 255))
+    screen.blit(sprite1, (x1, 100))
+    screen.blit(sprite2, (x2, 150))
+    pygame.display.flip()
+    clock.tick(60)
 
 pygame.quit()

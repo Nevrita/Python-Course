@@ -1,41 +1,57 @@
-import tkinter as tk
+# Import necessary packages 
+from tkinter import *
+from tkinter.filedialog import askopenfilename, asksaveasfilename
 
-# Create the main window
-root = tk.Tk()
+# Setup Root Window
+window = Tk()
+window.title("Codingal's Text Editor")
+window.geometry("600x500")
+window.rowconfigure(0, minsize=800, weight=1)
+window.columnconfigure(1, minsize=800, weight=1)
 
-# Set window size
-root.geometry('400x400')
+# Function to Open a file
+def open_file():
+	"""Open a file for editing."""
+	filepath = askopenfilename(
+		filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
+	)
+	if not filepath:
+		return
+	txt_edit.delete(1.0, END)
+	# if a file is opened then display the contents of the file
+	with open(filepath, "r") as input_file:
+		# Read contents of the input file
+		text = input_file.read()
+		# Insert contents of the file in the editor box
+		txt_edit.insert(END, text)
+		input_file.close()
+	window.title(f"Codingal's Text Editor - {filepath}")
 
-# Set window title
-root.title('Length Converter App')
+# Function to Save a file
+def save_file():
+    # Save the current file as a new file
+    filepath = asksaveasfilename(
+        defaultextension="txt",
+        filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")],
+    )
+    if not filepath:
+        return
+    with open(filepath, "w") as output_file:
+		# Read the edited content and update in the output file
+        text = txt_edit.get(1.0, END)
+        output_file.write(text)
+    window.title(f"Codingal's Text Editor - {filepath}")
 
-# Set background color to sky blue
-root.configure(bg='#87ceeb')
+# Add widgets in the application
+txt_edit = Text(window)
+fr_buttons = Frame(window, relief=RAISED, bd=2)
+btn_open = Button(fr_buttons, text="Open", command=open_file)
+btn_save = Button(fr_buttons, text="Save As...", command=save_file)
 
-# Create and place a label for instructions
-instruction_label = tk.Label(root, text='Enter length in inches:', bg='#87ceeb', fg='#333333', font=('Arial', 12))
-instruction_label.pack(pady=10)
+btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
+btn_save.grid(row=1, column=0, sticky="ew", padx=5)
 
-# Entry widget for user input
-inch_entry = tk.Entry(root, width=20, font=('Arial', 12))
-inch_entry.pack(pady=5)
+fr_buttons.grid(row=0, column=0, sticky="ns")
+txt_edit.grid(row=0, column=1, sticky="nsew")
 
-# Label to display result
-result_label = tk.Label(root, text='', bg='#87ceeb', fg='#555555', font=('Arial', 12))
-result_label.pack(pady=10)
-
-# Function to convert inches to centimeters
-def convert():
-    try:
-        inches = float(inch_entry.get())
-        centimeters = inches * 2.54
-        result_label.config(text=f'{inches} inches is {centimeters:.2f} centimeters.')
-    except ValueError:
-        result_label.config(text='Please enter a valid number.')
-
-# Convert button
-convert_button = tk.Button(root, text='Convert', command=convert, bg='#ff7f50', fg='white', font=('Arial', 12))
-convert_button.pack(pady=5)
-
-# Run the application
-root.mainloop()
+window.mainloop()

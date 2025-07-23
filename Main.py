@@ -1,57 +1,40 @@
-# Import necessary packages 
-from tkinter import *
-from tkinter.filedialog import askopenfilename, asksaveasfilename
+import tkinter as tk
 
-# Setup Root Window
-window = Tk()
-window.title("Codingal's Text Editor")
-window.geometry("600x500")
-window.rowconfigure(0, minsize=800, weight=1)
-window.columnconfigure(1, minsize=800, weight=1)
+# Create main window
+window = tk.Tk()
+window.geometry("400x400")
+window.title("Age Calculator App")
 
-# Function to Open a file
-def open_file():
-	"""Open a file for editing."""
-	filepath = askopenfilename(
-		filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")]
-	)
-	if not filepath:
-		return
-	txt_edit.delete(1.0, END)
-	# if a file is opened then display the contents of the file
-	with open(filepath, "r") as input_file:
-		# Read contents of the input file
-		text = input_file.read()
-		# Insert contents of the file in the editor box
-		txt_edit.insert(END, text)
-		input_file.close()
-	window.title(f"Codingal's Text Editor - {filepath}")
+# Labels and entries for input
+tk.Label(window, text="Age:").grid(row=0, column=0, padx=10, pady=10)
+age_entry = tk.Entry(window)
+age_entry.grid(row=0, column=1, padx=10, pady=10)
 
-# Function to Save a file
-def save_file():
-    # Save the current file as a new file
-    filepath = asksaveasfilename(
-        defaultextension="txt",
-        filetypes=[("Text Files", "*.txt"), ("All Files", "*.*")],
-    )
-    if not filepath:
-        return
-    with open(filepath, "w") as output_file:
-		# Read the edited content and update in the output file
-        text = txt_edit.get(1.0, END)
-        output_file.write(text)
-    window.title(f"Codingal's Text Editor - {filepath}")
+tk.Label(window, text="Time (years):").grid(row=1, column=0, padx=10, pady=10)
+time_entry = tk.Entry(window)
+time_entry.grid(row=1, column=1, padx=10, pady=10)
 
-# Add widgets in the application
-txt_edit = Text(window)
-fr_buttons = Frame(window, relief=RAISED, bd=2)
-btn_open = Button(fr_buttons, text="Open", command=open_file)
-btn_save = Button(fr_buttons, text="Save As...", command=save_file)
+tk.Label(window, text="Rate of interest (%):").grid(row=2, column=0, padx=10, pady=10)
+interest_entry = tk.Entry(window)
+interest_entry.grid(row=2, column=1, padx=10, pady=10)
 
-btn_open.grid(row=0, column=0, sticky="ew", padx=5, pady=5)
-btn_save.grid(row=1, column=0, sticky="ew", padx=5)
+# Label to display result
+result_label = tk.Label(window, text="Simple interest will be shown here")
+result_label.grid(row=4, column=0, columnspan=2, padx=10, pady=10)
 
-fr_buttons.grid(row=0, column=0, sticky="ns")
-txt_edit.grid(row=0, column=1, sticky="nsew")
+# Function to calculate simple interest
+def calculate_interest():
+    try:
+        p = float(age_entry.get())
+        t = float(time_entry.get())
+        r = float(interest_entry.get())
+        simple_interest = (p * t * r) / 100
+        result_label.config(text=f"Simple Interest: {simple_interest}")
+    except ValueError:
+        result_label.config(text="Please enter valid numerical values.")
+
+# Button to trigger calculation
+calculate_button = tk.Button(window, text="Calculate", command=calculate_interest)
+calculate_button.grid(row=3, column=0, columnspan=2, padx=10, pady=10)
 
 window.mainloop()
